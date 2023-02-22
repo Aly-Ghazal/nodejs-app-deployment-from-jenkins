@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+  namespace: app-ns
+  annotations:
+    networking.gke.io/load-balancer-type: "External"
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster
+  selector:
+    app: nodejs
+  ports:
+  - name: tcp-port
+    protocol: TCP
+    port: 3000
+    targetPort: 3000
